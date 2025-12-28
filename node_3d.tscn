@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://k8xtkmqvhhlb"]
+
+[ext_resource type="PackedScene" uid="uid://bjwni7uj1yfvh" path="res://player.tscn" id="1_a202f"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_noarx"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_a0tk4"]
+
+[sub_resource type="Environment" id="Environment_r3fl7"]
+background_mode = 1
+background_color = Color(0.2166411, 0.00012346741, 0.2680029, 1)
+fog_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_albedo = Color(0.16200075, 7.159449e-05, 0.20285338, 1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_noarx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("BoxMesh_a0tk4")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_r3fl7")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.412521, -4.368183)
+light_color = Color(0.78996027, 0.4959967, 1, 1)
+
+[node name="Player" parent="." instance=ExtResource("1_a202f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5298381, 1.5402986, -0.35717726)
