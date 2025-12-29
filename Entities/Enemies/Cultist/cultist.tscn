@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2ivsohao5ck6"]
+
+[ext_resource type="Script" uid="uid://fh3r2mey6oi6" path="res://Entities/Enemies/Cultist/cultist.gd" id="1_jg6gy"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_buax4"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gv0pp"]
+
+[node name="Cultist" type="CharacterBody3D"]
+script = ExtResource("1_jg6gy")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_buax4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_gv0pp")

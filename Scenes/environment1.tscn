@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://k8xtkmqvhhlb"]
+[gd_scene load_steps=6 format=3 uid="uid://k8xtkmqvhhlb"]
 
-[ext_resource type="PackedScene" uid="uid://bjwni7uj1yfvh" path="res://Entities/Player/player.tscn" id="1_7q7q3"]
+[ext_resource type="PackedScene" uid="uid://bjwni7uj1yfvh" path="res://Entities/Player/player.tscn" id="1_ryjrx"]
+[ext_resource type="PackedScene" uid="uid://c2ivsohao5ck6" path="res://Entities/Enemies/Cultist/cultist.tscn" id="2_ccn0c"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_noarx"]
 
@@ -13,7 +14,7 @@ fog_enabled = true
 volumetric_fog_enabled = true
 volumetric_fog_albedo = Color(0.16200075, 7.159449e-05, 0.20285338, 1)
 
-[node name="Node3D" type="Node3D"]
+[node name="Environment1" type="Node3D"]
 
 [node name="Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
@@ -31,5 +32,8 @@ environment = SubResource("Environment_r3fl7")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.412521, -4.368183)
 light_color = Color(0.78996027, 0.4959967, 1, 1)
 
-[node name="Player" parent="." instance=ExtResource("1_7q7q3")]
+[node name="Player" parent="." instance=ExtResource("1_ryjrx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5298381, 1.5402986, -0.35717726)
+
+[node name="Cultist" parent="." instance=ExtResource("2_ccn0c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6849117, 1.702217, -4.0592556)
