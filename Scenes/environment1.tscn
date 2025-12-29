@@ -1,10 +1,37 @@
-[gd_scene load_steps=9 format=3 uid="uid://k8xtkmqvhhlb"]
+[gd_scene load_steps=11 format=3 uid="uid://k8xtkmqvhhlb"]
 
 [ext_resource type="Script" uid="uid://dep2opno7y3qa" path="res://Scenes/world_gen.gd" id="1_ccn0c"]
 [ext_resource type="PackedScene" uid="uid://bjwni7uj1yfvh" path="res://Entities/Player/player.tscn" id="1_ryjrx"]
 [ext_resource type="PackedScene" uid="uid://yodbuip66tqa" path="res://Assets/Environment/tree.tscn" id="2_bo1e2"]
 [ext_resource type="PackedScene" uid="uid://c2ivsohao5ck6" path="res://Entities/Enemies/Cultist/cultist.tscn" id="2_ccn0c"]
 [ext_resource type="PackedScene" uid="uid://h5xaq37ddfo6" path="res://Assets/Environment/rock.tscn" id="3_5aqpm"]
+
+[sub_resource type="PackedScene" id="PackedScene_bo1e2"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("grass", "Node3D", "Cube"),
+"node_count": 2,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 0, 0, 0, 0, 1, 2, -1, 0, 0),
+"variants": [],
+"version": 3
+}
+
+[sub_resource type="PackedScene" id="PackedScene_5aqpm"]
+_bundled = {
+"base_scene": 0,
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("grass"),
+"node_count": 1,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 0, 0),
+"variants": [SubResource("PackedScene_bo1e2")],
+"version": 3
+}
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_noarx"]
 
@@ -15,12 +42,14 @@ background_mode = 1
 background_color = Color(0.2166411, 0.00012346741, 0.2680029, 1)
 fog_enabled = true
 volumetric_fog_enabled = true
+volumetric_fog_density = 0.25
 volumetric_fog_albedo = Color(0.16200075, 7.159449e-05, 0.20285338, 1)
 
 [node name="Environment1" type="Node3D"]
 script = ExtResource("1_ccn0c")
 tree_scene = ExtResource("2_bo1e2")
 rock_scene = ExtResource("3_5aqpm")
+grass_scene = SubResource("PackedScene_5aqpm")
 
 [node name="Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0)

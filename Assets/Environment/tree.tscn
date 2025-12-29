@@ -1,28 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://yodbuip66tqa"]
+[gd_scene load_steps=2 format=3 uid="uid://yodbuip66tqa"]
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_rlmjr"]
-top_radius = 0.3
-bottom_radius = 0.3
-height = 5.0
+[ext_resource type="PackedScene" uid="uid://cuvv1huenfr5l" path="res://Assets/Models/tree.glb" id="1_pgh5o"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_pgh5o"]
-radius = 2.0
-height = 6.0
+[node name="tree" instance=ExtResource("1_pgh5o")]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_7b1m2"]
-height = 5.0
-radius = 0.3
-
-[node name="Tree" type="StaticBody3D"]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19145703, 2.0726314, 0)
-mesh = SubResource("CylinderMesh_rlmjr")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25414872, 7.249657, -0.1206826)
-mesh = SubResource("SphereMesh_pgh5o")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19491331, 2.0707455, 0)
-shape = SubResource("CylinderShape3D_7b1m2")
+[node name="Cylinder" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.099724054, 0.881647, -0.0228858)
