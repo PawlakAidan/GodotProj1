@@ -2,8 +2,8 @@ extends Node3D
 
 @export var tree_scene: PackedScene
 @export var rock_scene: PackedScene
-@export var spawn_count: int = 50
-@export var map_size: int = 40 # Total width/length of your floor
+@export var spawn_count: int = 140
+@export var map_size: int = 100 # Total width/length of your floor
 
 func _ready():
 	spawn_random_props()
