@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://k8xtkmqvhhlb"]
 
-[ext_resource type="PackedScene" uid="uid://bjwni7uj1yfvh" path="res://player.tscn" id="1_a202f"]
+[ext_resource type="PackedScene" uid="uid://bjwni7uj1yfvh" path="res://Entities/Player/player.tscn" id="1_7q7q3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_noarx"]
 
@@ -31,5 +31,5 @@ environment = SubResource("Environment_r3fl7")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.412521, -4.368183)
 light_color = Color(0.78996027, 0.4959967, 1, 1)
 
-[node name="Player" parent="." instance=ExtResource("1_a202f")]
+[node name="Player" parent="." instance=ExtResource("1_7q7q3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5298381, 1.5402986, -0.35717726)
