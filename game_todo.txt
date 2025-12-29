@@ -1,0 +1,16 @@
+Environment
+- textures
+- features (trees, rocks, hills?)
+- random generation
+
+Player
+- sanity
+- textures
+- weapons
+- items
+- animations
+
+Enemies
+- textures
+- animations
+- spawning

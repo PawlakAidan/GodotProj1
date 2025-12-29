@@ -36,5 +36,14 @@ func _unhandled_input(event):
 		# Clamp the vertical look so you don't flip upside down
 		$Camera3D.rotation.x = clamp($Camera3D.rotation.x, -1.5, 1.5)
 		
+func _input(event):
+	# Press Escape to toggle the mouse cursor
+	if event.is_action_pressed("ui_cancel"):
+		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		else:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		
 func _ready():
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
