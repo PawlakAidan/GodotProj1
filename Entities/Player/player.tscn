@@ -21,7 +21,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.010485668, 0.5755519, -0.33
 
 [node name="flashlight" type="SpotLight3D" parent="Camera3D"]
 light_color = Color(1, 1, 0.654902, 1)
-light_energy = 1.5
+light_energy = 11.232
 shadow_enabled = true
 spot_range = 15.487
 spot_angle = 31.02

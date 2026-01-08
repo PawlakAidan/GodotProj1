@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://dalplcmj7qnmm"]
+
+[ext_resource type="PackedScene" uid="uid://c0got8666v0fm" path="res://Entities/Player/moi.glb" id="1_bdpd1"]
+[ext_resource type="PackedScene" uid="uid://x8gv4lfajdn" path="res://Assets/Weapons/repeater.glb" id="2_jk572"]
+[ext_resource type="Script" uid="uid://deur84hqpoqrs" path="res://Assets/Weapons/repeater.gd" id="3_eyqh4"]
+[ext_resource type="PackedScene" uid="uid://bxwmwphenscel" path="res://Assets/Weapons/bullet.tscn" id="4_eyqh4"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jk572"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_jk572"]
+top_radius = 0.01
+bottom_radius = 0.05
+height = 0.3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eyqh4"]
+albedo_color = Color(0.7590022, 0.7359925, 0.012769281, 1)
+emission_enabled = true
+emission = Color(0.65764385, 0.73766184, 0, 1)
+emission_energy_multiplier = 7.44
+
+[node name="Player" type="CharacterBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.69, 0, 0, 0, 0.82, 0, 0, 0, 0.64, 0, 0.7636775, -0.054979473)
+shape = SubResource("CapsuleShape3D_jk572")
+
+[node name="moi" parent="." instance=ExtResource("1_bdpd1")]
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="moi/Armature_Monk/Skeleton3D" index="1"]
+transform = Transform3D(0.27853602, -0.88101834, -0.38239282, -0.91822684, -0.12755789, -0.37495074, 0.28156132, 0.45556074, -0.8445042, -0.5292668, 0.17357199, 0.1272546)
+bone_name = "Hand.r"
+bone_idx = 14
+
+[node name="repeater" parent="moi/Armature_Monk/Skeleton3D" index="2" instance=ExtResource("2_jk572")]
+transform = Transform3D(0.44, 0, 0, 0, 0.44, 0, 0, 0, 0.44, -0.5392295, 0.061807215, 0.5232808)
+script = ExtResource("3_eyqh4")
+bullet_scene = ExtResource("4_eyqh4")
+
+[node name="Muzzle" type="Marker3D" parent="moi/Armature_Monk/Skeleton3D/repeater"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00073575974, 0.3133073, 2.1458683)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="moi/Armature_Monk/Skeleton3D/repeater/Muzzle"]
+transform = Transform3D(1, 0, 0, 0, -0.013229267, 0.9999125, 0, -0.9999125, -0.013229267, 0, 0, 0.14704752)
+visible = false
+mesh = SubResource("CylinderMesh_jk572")
+surface_material_override/0 = SubResource("StandardMaterial3D_eyqh4")
+
+[editable path="moi"]

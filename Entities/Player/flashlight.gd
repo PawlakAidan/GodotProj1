@@ -10,4 +10,4 @@ func _ready() -> void:
 func _process(_delta):
 	# Randomly adjust energy slightly to create a subtle buzz/flicker
 	if randf() > 0.95:
-		light_energy = randf_range(1.0, 2.0)
+		light_energy = randf_range(5.0, 10.0)

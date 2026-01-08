@@ -1,23 +1,25 @@
 extends CharacterBody3D
+@onready var camera = $Player/Camera3D
 @export var mouse_sensitivity = 0.002
-
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
+# Ensure your Camera3D path is correct
+
+# Update this path to your rifle node
+@onready var rifle = $moi/Armature_Monk/Skeleton3D/repeater
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	
+	# FIX 1: Negative input_dir.y makes "Up" move Forward (-Z)
+	var direction := (transform.basis * Vector3(-input_dir.x, 0, -input_dir.y)).normalized()	
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
@@ -29,20 +31,27 @@ func _physics_process(delta: float) -> void:
 	
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
-	   # Rotate the whole player left/right (Y axis)
+		# This rotates the whole player left/right
 		rotate_y(-event.relative.x * mouse_sensitivity)
-		# Rotate the camera up/down (X axis)
-		$Camera3D.rotate_x(-event.relative.y * mouse_sensitivity)
-		# Clamp the vertical look so you don't flip upside down
-		$Camera3D.rotation.x = clamp($Camera3D.rotation.x, -1.5, 1.5)
+		
+		# This rotates ONLY the camera up/down
+		# We use .rotate_x because vertical looking is rotation around the X axis
+		if has_node("Camera3D"):
+			$Camera3D.rotate_x(event.relative.y * mouse_sensitivity)
+			# Clamp prevents the camera from flipping over
+			$Camera3D.rotation.x = clamp($Camera3D.rotation.x, deg_to_rad(-80), deg_to_rad(80))
 		
 func _input(event):
-	# Press Escape to toggle the mouse cursor
 	if event.is_action_pressed("ui_cancel"):
 		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
+	# Trigger the shooting logic we set up earlier
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		if rifle:
+			rifle.shoot()
 		
 func _ready():
 	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
