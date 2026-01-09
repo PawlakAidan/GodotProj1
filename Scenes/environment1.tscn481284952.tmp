@@ -128,7 +128,7 @@ offset_right = 2.0
 offset_bottom = 2.0
 mouse_filter = 2
 
-[node name="Player" parent="." groups=["Player"] instance=ExtResource("10_appwy")]
+[node name="Player" parent="." instance=ExtResource("10_appwy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.58395183, 0)
 script = ExtResource("11_appwy")
 

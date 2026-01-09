@@ -5,7 +5,7 @@ extends Node3D
 @export var grass_scene: PackedScene # New slot for your grass.glb
 
 @export var spawn_count: int = 140
-@export var map_size: int = 100 
+@export var map_size: float = 100
 @export var min_distance: float = 2.0 # Minimum meters between objects
 
 var spawned_positions = []

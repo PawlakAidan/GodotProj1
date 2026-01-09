@@ -1,7 +1,7 @@
 extends Node
 
 # 100 = Sane, 0 = Total Madness
-var sanity: float = 0.0
+var sanity: float = 100.0
 var difficulty_modifier: float = 1.0
 
 func _process(_delta):
