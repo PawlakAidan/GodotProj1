@@ -3,6 +3,9 @@ extends CharacterBody3D
 @export var mouse_sensitivity = 0.002
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
+var kills = 0
+@onready var kill_count_label: Label = $"../CanvasLayer/KillCountLabel"
+
 
 # Ensure your Camera3D path is correct
 
@@ -52,7 +55,14 @@ func _input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		if rifle:
 			rifle.shoot()
+			
+func add_kill():
+	kills += 1
+	if kill_count_label:
+		kill_count_label.text = "Kills: " + str(kills)
+
 		
 func _ready():
+	kill_count_label.text = "Kills: "
 	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
